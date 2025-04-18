@@ -1,7 +1,7 @@
 eval: true
 batch_size: 64
 world_size: 4
-model: vit_large_patch16
+model: RETFound_mae
 nb_classes: 2
 data_path: /mnt/data/Anastasiia_Ponkratova/RETFound_MAE/datasets/Kaggle/
 task: ./results/finetune_Kaggle/

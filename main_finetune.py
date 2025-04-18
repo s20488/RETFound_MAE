@@ -22,6 +22,8 @@ from util.misc import NativeScalerWithGradNormCount as NativeScaler
 from huggingface_hub import hf_hub_download, login
 from engine_finetune import train_one_epoch, evaluate
 
+from util.roc_pr_curve import plot_roc_curve, plot_pr_curve
+
 import warnings
 import faulthandler
 
@@ -338,6 +340,9 @@ def main(args, criterion):
             print("Test with the best model at epoch = %d" % checkpoint['epoch'])
         test_stats, auc_roc = evaluate(data_loader_test, model, device, args, epoch=0, mode='test',
                                        num_class=args.nb_classes, log_writer=log_writer)
+
+        plot_roc_curve(data_loader_test, model, device, num_class=args.nb_classes, task=args.task)
+        plot_pr_curve(data_loader_test, model, device, num_class=args.nb_classes, task=args.task)
         exit(0)
 
     print(f"Start training for {args.epochs} epochs")

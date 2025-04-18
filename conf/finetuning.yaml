@@ -1,6 +1,6 @@
 batch_size: 16
 accum_iter: 1
-model: vit_large_patch16
+model: RETFound_mae
 blr: 2.0e-4
 layer_decay: 0.9
 weight_decay: 0.005
