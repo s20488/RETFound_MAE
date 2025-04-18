@@ -398,6 +398,16 @@ if __name__ == '__main__':
     args = get_args_parser()
     args = args.parse_args()
 
+    # config = load_config('conf/finetuning.yaml')
+    config = load_config('conf/evaluation.yaml')  # for evaluation only
+
+    for key, value in config.items():
+        setattr(args, key, value)
+
+    # class_weights = torch.tensor([3.00, 1.50], device=device)  # cataract
+    # class_weights = torch.tensor([3.00, 1.50], device=device)  # diabetes
+    # class_weights = torch.tensor([3.00, 1.50], device=device)  # glaucoma
+    # criterion = torch.nn.CrossEntropyLoss(weight=class_weights)
     criterion = torch.nn.CrossEntropyLoss()
 
     if args.output_dir:
